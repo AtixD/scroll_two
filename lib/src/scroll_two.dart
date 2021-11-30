@@ -119,6 +119,7 @@ class ScrollTwo<T> extends StatefulWidget {
   final ChildBuilder builder;
   final DataController<T> controller;
   final ScrollTwoController scrollController;
+  final bool reverse;
 
   const ScrollTwo(
     this.builder, {
@@ -154,6 +155,7 @@ class _ScrollTwoState<T> extends State<ScrollTwo<T>> {
       controller: scrollController,
       physics: const AlwaysScrollableScrollPhysics(),
       center: centerKey,
+      reverse: reverse,
       slivers: [
         SliverList(
           delegate: SliverChildBuilderDelegate(
