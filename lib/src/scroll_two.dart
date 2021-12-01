@@ -142,9 +142,13 @@ class _ScrollTwoState<T> extends State<ScrollTwo<T>> {
   void initState() {
     scrollController = widget.scrollController;
     controller = widget.controller;
-    controller?.addListener(() {
-      setState(() {});
-    });
+
+    if (controller != null && controller.addListener != null) {
+      controller.addListener(() {
+        setState(() {});
+      });
+    }
+
     super.initState();
   }
 
