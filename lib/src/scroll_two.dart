@@ -150,14 +150,14 @@ class _ScrollTwoState<T> extends State<ScrollTwo<T>> {
 
   @override
   void setState(fn) {
-    if (mounted) {
+    if (isMounted) {
       super.setState(fn);
     }
   }
 
   @override
   void dispose() {
-    mounted = false;
+    isMounted = false;
     super.dispose();
   }
 
