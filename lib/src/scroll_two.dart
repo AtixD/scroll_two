@@ -156,7 +156,7 @@ class _ScrollTwoState<T> extends State<ScrollTwo<T>> {
       controller: scrollController,
       physics: const AlwaysScrollableScrollPhysics(),
       center: centerKey,
-      reverse: widget?.reverse ?? false,
+      reverse: widget.reverse ?? false,
       slivers: [
         SliverList(
           delegate: SliverChildBuilderDelegate(
