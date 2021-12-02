@@ -9,13 +9,21 @@ class ScrollTwoController extends ScrollController {
   IndexCallback? _indexCallback;
 
   ///Fixed too many items won't scroll to the top
-  Future<void> moveToMin(double offset, {required Duration duration, required Curve curve}) async {
+  Future<void> moveToMin(
+    double offset, {
+    required Duration duration,
+    required Curve curve,
+  }) async {
     await animateTo(position.minScrollExtent, duration: duration, curve: curve);
     await animateTo(position.minScrollExtent, duration: duration, curve: curve);
   }
 
   ///Fixed too many items won't scroll to the bottom
-  Future<void> moveToMax(double offset, {required Duration duration, required Curve curve}) async {
+  Future<void> moveToMax(
+    double offset, {
+    required Duration duration,
+    required Curve curve,
+  }) async {
     await animateTo(position.maxScrollExtent, duration: duration, curve: curve);
     await animateTo(position.maxScrollExtent, duration: duration, curve: curve);
   }
@@ -136,7 +144,6 @@ class _ScrollTwoState<T> extends State<ScrollTwo<T>> {
   late DataController<T> controller;
   var previousPostion = 0;
   var currentPostion = 0;
-  bool isMounted = true;
 
   @override
   void initState() {
@@ -144,25 +151,25 @@ class _ScrollTwoState<T> extends State<ScrollTwo<T>> {
     controller = widget.controller;
 
     if (controller != null && controller.addListener != null) {
-      controller.addListener(() {
-        setState(() {});
-      });
+      controller.addListener(() => setState(() {}));
     }
 
     super.initState();
   }
 
   @override
-  void setState(fn) {
-    if (isMounted) {
-      super.setState(fn);
+  void didUpdateWidget(covariant ScrollTwo<T> oldWidget) {
+    if (oldWidget.controller != widget.controller) {
+      controller = widget.controller..addListener(() => setState(() {}));
     }
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
-  void dispose() {
-    isMounted = false;
-    super.dispose();
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
   }
 
   @override
