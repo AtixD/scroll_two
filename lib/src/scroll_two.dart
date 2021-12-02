@@ -159,7 +159,8 @@ class _ScrollTwoState<T> extends State<ScrollTwo<T>> {
 
   @override
   void didUpdateWidget(covariant ScrollTwo<T> oldWidget) {
-    if (oldWidget.controller != widget.controller) {
+    if (oldWidget.controller != widget.controller &&
+        widget.controller != null) {
       controller = widget.controller..addListener(() => setState(() {}));
     }
     super.didUpdateWidget(oldWidget);
