@@ -198,7 +198,7 @@ class _ScrollTwoState<T> extends State<ScrollTwo<T>> {
               );
             },
             semanticIndexCallback: (_, index) {},
-            childCount: controller._top?.length ?? 0,
+            childCount: controller._top.isNotEmpty ? controller._top.length : 0,
           ),
         ),
         SliverList(
@@ -220,7 +220,7 @@ class _ScrollTwoState<T> extends State<ScrollTwo<T>> {
             semanticIndexCallback: (widget, index) {
               return index;
             },
-            childCount: controller._bottom?.length ?? 0,
+            childCount: controller._bottom.isNotEmpty ? controller._bottom.length : 0,
           ),
         ),
       ],
